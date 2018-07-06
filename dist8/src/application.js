@@ -2,11 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const sequence_1 = require("./sequence");
+const db_datasources_1 = require("./datasources/db.datasources");
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 const boot_1 = require("@loopback/boot");
 /* tslint:enable:no-unused-variable */
-class SublettingApiApplication extends boot_1.BootMixin(rest_1.RestApplication) {
+const repository_1 = require("@loopback/repository");
+class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
         super(options);
         // Set up the custom sequence
@@ -21,6 +23,12 @@ class SublettingApiApplication extends boot_1.BootMixin(rest_1.RestApplication) 
                 nested: true,
             },
         };
+        this.setupDatasource();
+    }
+    setupDatasource() {
+        const datasource = this.options && this.options.datasource ?
+            this.juggler.DataSource(this.options.datasource) : db_datasources_1.db;
+        this.dataSource(datasource);
     }
     async start() {
         await super.start();

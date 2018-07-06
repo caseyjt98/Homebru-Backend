@@ -1,7 +1,9 @@
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./ping.controller"));
+var login_controller_1 = require("./login.controller");
+exports.LoginController = login_controller_1.LoginController;
+var registration_controller_1 = require("./registration.controller");
+exports.RegistrationController = registration_controller_1.RegistrationController;
+var user_controller_1 = require("./user.controller");
+exports.UserController = user_controller_1.UserController;
 //# sourceMappingURL=index.js.map

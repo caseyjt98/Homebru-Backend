@@ -4,14 +4,9 @@ import { Entity, property, model } from '@loopback/repository';
 export class Product extends Entity {
 
   @property({
-    type: 'string',
-    required: true
-  })
-  location: string;
-
-  @property({
     type: 'number',
-    required: true
+    required: true,
+    column: "address_number"
   })
   addressNumber: number;
 

@@ -34,13 +34,20 @@ export class SublettingApiApplication extends BootMixin(
         nested: true,
       },
     };
-    this.setupDatasource();
-  }
 
-  setupDatasource() {
-    const datasource = this.options && this.options.datasource ?
-      this.juggler.DataSource(this.options.datasource) : db;
-    this.dataSource(datasource);
+
+    var dataSourceConfig = new juggler.DataSource({
+      name: "db",
+      connector: "loopback-connector-mysql",
+      host: "localhost",
+      port: 3306,
+      user: "root",
+      password: "",
+      database: "subletting"
+    });
+
+
+    this.dataSource(dataSourceConfig);
   }
 
   async start() {
