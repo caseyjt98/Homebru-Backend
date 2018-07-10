@@ -7,6 +7,7 @@ import {
   param,
 } from '@loopback/rest';
 
+
 export class UserController {
   constructor(
     @repository(UserRepository) protected userRepo: UserRepository,
@@ -27,5 +28,8 @@ export class UserController {
     }
 
     return await this.userRepo.findById(id);
+
+
+
   }
 }

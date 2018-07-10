@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const sequence_1 = require("./sequence");
-const db_datasources_1 = require("./datasources/db.datasources");
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 const boot_1 = require("@loopback/boot");
@@ -23,12 +22,16 @@ class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryM
                 nested: true,
             },
         };
-        this.setupDatasource();
-    }
-    setupDatasource() {
-        const datasource = this.options && this.options.datasource ?
-            this.juggler.DataSource(this.options.datasource) : db_datasources_1.db;
-        this.dataSource(datasource);
+        var dataSourceConfig = new repository_1.juggler.DataSource({
+            name: "db",
+            connector: "loopback-connector-mysql",
+            host: "localhost",
+            port: 3306,
+            user: "root",
+            password: "",
+            database: "subletting"
+        });
+        this.dataSource(dataSourceConfig);
     }
     async start() {
         await super.start();

@@ -26,6 +26,7 @@ export class RegistrationController {
       throw new HttpErrors.BadRequest('user already exists');
     }
 
-    return await this.userRepo.create(user);
+    let newUser = await this.userRepo.create(user);
+    return newUser;
   }
 }

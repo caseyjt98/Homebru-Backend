@@ -34,6 +34,5 @@ declare const SublettingApiApplication_base: (new (...args: any[]) => {
 }) & typeof RestApplication;
 export declare class SublettingApiApplication extends SublettingApiApplication_base {
     constructor(options?: ApplicationConfig);
-    setupDatasource(): void;
     start(): Promise<void>;
 }

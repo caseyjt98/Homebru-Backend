@@ -15,10 +15,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const repositories_1 = require("../repositories");
 const models_1 = require("../models");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const rest_1 = require("@loopback/rest");
 let LoginController = class LoginController {
     constructor(userRepo) {
         this.userRepo = userRepo;
+    }
+    /** tests out that our jwt token works */
+    verifyToken(jwt) {
+        try {
+            let payload = jsonwebtoken_1.verify(jwt, "qwerty");
+            return payload;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("invalid token");
+        }
+        /** the user is authenticated and we can progress */
     }
     async loginUser(user) {
         // Check that email and password are both supplied
@@ -35,7 +47,7 @@ let LoginController = class LoginController {
         if (!userExists) {
             throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
         }
-        return await this.userRepo.findOne({
+        let foundUser = await this.userRepo.findOne({
             where: {
                 and: [
                     { email: user.email },
@@ -43,8 +55,28 @@ let LoginController = class LoginController {
                 ],
             },
         });
+        let jwt = jsonwebtoken_1.sign({
+            user: {
+                id: foundUser.id,
+                email: foundUser.email
+            }
+        }, "qwerty", {
+            issuer: "auth.ix.co.za",
+            audience: "ix.co.za"
+        });
+        //dont just return jwt (string), return json object
+        return {
+            token: jwt
+        };
     }
 };
+__decorate([
+    rest_1.get('/verify'),
+    __param(0, rest_1.param.query.string("jwt")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LoginController.prototype, "verifyToken", null);
 __decorate([
     rest_1.post('/login'),
     __param(0, rest_1.requestBody()),

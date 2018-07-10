@@ -14,15 +14,9 @@ let Product = class Product extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'string',
-        required: true
-    }),
-    __metadata("design:type", String)
-], Product.prototype, "location", void 0);
-__decorate([
-    repository_1.property({
         type: 'number',
-        required: true
+        required: true,
+        column: "address_number"
     }),
     __metadata("design:type", Number)
 ], Product.prototype, "addressNumber", void 0);

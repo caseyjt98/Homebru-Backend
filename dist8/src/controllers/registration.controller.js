@@ -30,7 +30,8 @@ let RegistrationController = class RegistrationController {
         if (userExists) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
-        return await this.userRepo.create(user);
+        let newUser = await this.userRepo.create(user);
+        return newUser;
     }
 };
 __decorate([

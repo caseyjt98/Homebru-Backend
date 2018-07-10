@@ -3,5 +3,9 @@ import { User } from '../models';
 export declare class LoginController {
     protected userRepo: UserRepository;
     constructor(userRepo: UserRepository);
-    loginUser(user: User): Promise<User>;
+    /** tests out that our jwt token works */
+    verifyToken(jwt: string): string | object;
+    loginUser(user: User): Promise<{
+        token: string;
+    }>;
 }
