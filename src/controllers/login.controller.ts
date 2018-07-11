@@ -2,6 +2,7 @@ import { repository } from '@loopback/repository';
 import { UserRepository } from '../repositories';
 import { User } from '../models';
 import { sign, verify } from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 import {
   HttpErrors,
   post,
@@ -33,29 +34,23 @@ export class LoginController {
   async loginUser(@requestBody() user: User) {
     // Check that email and password are both supplied
     if (!user.email || !user.password) {
-      throw new HttpErrors.Unauthorized('invalid credentials');
+      throw new HttpErrors.Unauthorized('missing email or password');
     }
 
-    // Check that email and password are valid
-    let userExists: boolean = !!(await this.userRepo.count({
-      and: [
-        { email: user.email },
-        { password: user.password },
-      ],
-    }));
-
-    if (!userExists) {
-      throw new HttpErrors.Unauthorized('invalid credentials');
-    }
-
+    //Find the user with given email (should always be only one)
     let foundUser = await this.userRepo.findOne({
       where: {
-        and: [
-          { email: user.email },
-          { password: user.password }
-        ],
+        email: user.email
       },
     }) as User;
+
+
+    var bcrypt = require('bcryptjs');
+
+    //Check the found user's password with the given password
+    if (!await bcrypt.compare(user.password, foundUser.password)) {
+      throw new HttpErrors.Unauthorized('invalid credentials');
+    }
 
     let jwt = sign({
       user: {  //make sure only get id and email, dont want password

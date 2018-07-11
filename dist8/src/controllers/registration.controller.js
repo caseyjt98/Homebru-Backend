@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const repositories_1 = require("../repositories");
 const models_1 = require("../models");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const rest_1 = require("@loopback/rest");
 let RegistrationController = class RegistrationController {
     constructor(userRepo) {
@@ -23,15 +24,33 @@ let RegistrationController = class RegistrationController {
     async registerUser(user) {
         // Check that required fields are supplied
         if (!user.email || !user.password) {
-            throw new rest_1.HttpErrors.BadRequest('missing data');
+            throw new rest_1.HttpErrors.BadRequest('missing email or password');
         }
         // Check that user does not already exist
         let userExists = !!(await this.userRepo.count({ email: user.email }));
         if (userExists) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
+        //Hash the user's password before creating the user
+        var bcrypt = require('bcryptjs');
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(user.password, salt);
+        //let hashedPassword = await bcrypt.hash(user.password, 10);
+        user.password = hash;
         let newUser = await this.userRepo.create(user);
-        return newUser;
+        let jwt = jsonwebtoken_1.sign({
+            user: {
+                id: newUser.id,
+                email: newUser.email
+            }
+        }, "qwerty", {
+            issuer: "auth.ix.co.za",
+            audience: "ix.co.za"
+        });
+        //dont just return jwt (string), return json object
+        return {
+            token: jwt
+        };
     }
 };
 __decorate([

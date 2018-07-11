@@ -35,26 +35,19 @@ let LoginController = class LoginController {
     async loginUser(user) {
         // Check that email and password are both supplied
         if (!user.email || !user.password) {
-            throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
+            throw new rest_1.HttpErrors.Unauthorized('missing email or password');
         }
-        // Check that email and password are valid
-        let userExists = !!(await this.userRepo.count({
-            and: [
-                { email: user.email },
-                { password: user.password },
-            ],
-        }));
-        if (!userExists) {
-            throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
-        }
+        //Find the user with given email (should always be only one)
         let foundUser = await this.userRepo.findOne({
             where: {
-                and: [
-                    { email: user.email },
-                    { password: user.password }
-                ],
+                email: user.email
             },
         });
+        var bcrypt = require('bcryptjs');
+        //Check the found user's password with the given password
+        if (!await bcrypt.compare(user.password, foundUser.password)) {
+            throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
+        }
         let jwt = jsonwebtoken_1.sign({
             user: {
                 id: foundUser.id,
