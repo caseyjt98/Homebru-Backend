@@ -26,18 +26,22 @@ let RegistrationController = class RegistrationController {
         if (!user.email || !user.password) {
             throw new rest_1.HttpErrors.BadRequest('missing email or password');
         }
+        let userToCreate = new models_1.User();
+        userToCreate.first_name = user.first_name;
+        userToCreate.last_name = user.last_name;
+        userToCreate.email = user.email;
+        userToCreate.is_subleaser = user.is_subleaser;
+        //Hash the user's password before creating the user
+        var bcrypt = require('bcryptjs');
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(user.password, salt);
+        userToCreate.password = hash;
         // Check that user does not already exist
         let userExists = !!(await this.userRepo.count({ email: user.email }));
         if (userExists) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
-        //Hash the user's password before creating the user
-        var bcrypt = require('bcryptjs');
-        var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(user.password, salt);
-        //let hashedPassword = await bcrypt.hash(user.password, 10);
-        user.password = hash;
-        let newUser = await this.userRepo.create(user);
+        let newUser = await this.userRepo.create(userToCreate);
         let jwt = jsonwebtoken_1.sign({
             user: {
                 id: newUser.id,

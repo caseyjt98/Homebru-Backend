@@ -1,7 +1,7 @@
 import { repository } from '@loopback/repository';
 import { UserRepository } from '../repositories';
 import { User } from '../models';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import {
   HttpErrors,
   post,
@@ -15,10 +15,23 @@ export class RegistrationController {
 
   @post('/registration')
   async registerUser(@requestBody() user: User) {
+
     // Check that required fields are supplied
     if (!user.email || !user.password) {
       throw new HttpErrors.BadRequest('missing email or password');
     }
+    let userToCreate = new User();
+    userToCreate.first_name = user.first_name;
+    userToCreate.last_name = user.last_name;
+    userToCreate.email = user.email;
+    userToCreate.is_subleaser = user.is_subleaser;
+
+    //Hash the user's password before creating the user
+    var bcrypt = require('bcryptjs');
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
+
+    userToCreate.password = hash;
 
     // Check that user does not already exist
     let userExists: boolean = !!(await this.userRepo.count({ email: user.email }));
@@ -27,15 +40,8 @@ export class RegistrationController {
       throw new HttpErrors.BadRequest('user already exists');
     }
 
-    //Hash the user's password before creating the user
-    var bcrypt = require('bcryptjs');
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(user.password, salt);
 
-    //let hashedPassword = await bcrypt.hash(user.password, 10);
-    user.password = hash;
-
-    let newUser = await this.userRepo.create(user);
+    let newUser = await this.userRepo.create(userToCreate);
 
     let jwt = sign({
       user: {  //make sure only get id and email, dont want password

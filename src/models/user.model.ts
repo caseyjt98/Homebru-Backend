@@ -31,10 +31,10 @@ export class User extends Entity {
   password: string;
 
   @property({
-    type: 'number',
-    required: true
+    type: 'boolean',
+    required: true,
   })
-  age: number;
+  is_subleaser: boolean;
 
   getId() {
     return this.id;
