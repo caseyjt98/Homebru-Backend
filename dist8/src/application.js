@@ -9,7 +9,11 @@ const boot_1 = require("@loopback/boot");
 const repository_1 = require("@loopback/repository");
 class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
-        super(options);
+        super({
+            rest: {
+                port: process.env.PORT || 3000
+            }
+        });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -33,11 +37,11 @@ class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryM
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
             connector: "loopback-connector-mysql",
-            host: "localhost",
-            port: 3306,
-            user: "root",
-            password: "",
-            database: "subletting"
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_DATABASE
         });
         this.dataSource(dataSourceConfig);
     }
