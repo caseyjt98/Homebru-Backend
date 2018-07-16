@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const repositories_1 = require("../repositories");
 const models_1 = require("../models");
+const jsonwebtoken_1 = require("jsonwebtoken");
 const rest_1 = require("@loopback/rest");
 let RegistrationController = class RegistrationController {
     constructor(userRepo) {
@@ -23,15 +24,39 @@ let RegistrationController = class RegistrationController {
     async registerUser(user) {
         // Check that required fields are supplied
         if (!user.email || !user.password) {
-            throw new rest_1.HttpErrors.BadRequest('missing data');
+            throw new rest_1.HttpErrors.BadRequest('missing email or password');
         }
+        let userToCreate = new models_1.User();
+        userToCreate.first_name = user.first_name;
+        userToCreate.last_name = user.last_name;
+        userToCreate.email = user.email;
+        userToCreate.is_subleaser = user.is_subleaser;
+        //Hash the user's password before creating the user
+        var bcrypt = require('bcryptjs');
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(user.password, salt);
+        userToCreate.password = hash;
         // Check that user does not already exist
         let userExists = !!(await this.userRepo.count({ email: user.email }));
         if (userExists) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
-        let newUser = await this.userRepo.create(user);
-        return newUser;
+        let newUser = await this.userRepo.create(userToCreate);
+        let jwt = jsonwebtoken_1.sign({
+            user: {
+                id: newUser.id,
+                email: newUser.email,
+                first_name: newUser.first_name,
+                last_name: newUser.last_name
+            }
+        }, "qwerty", {
+            issuer: "auth.ix.co.za",
+            audience: "ix.co.za"
+        });
+        //dont just return jwt (string), return json object
+        return {
+            token: jwt
+        };
     }
 };
 __decorate([

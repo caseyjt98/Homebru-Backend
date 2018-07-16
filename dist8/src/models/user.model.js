@@ -50,11 +50,11 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'boolean',
+        required: true,
     }),
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
+    __metadata("design:type", Boolean)
+], User.prototype, "is_subleaser", void 0);
 User = __decorate([
     repository_1.model()
 ], User);

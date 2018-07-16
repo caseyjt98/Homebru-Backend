@@ -23,7 +23,6 @@ exports.up = function (db, callback) {
       autoIncrement: true,
       notNull: true
     },
-    //full_name: 'string'  // shorthand notation
     first_name: {
       type: 'string',
       length: 255,
@@ -44,8 +43,8 @@ exports.up = function (db, callback) {
       length: 255,
       notNull: true
     },
-    age: {
-      type: 'date',
+    is_subleaser: {
+      type: 'boolean',
       notNull: true
     }
 
