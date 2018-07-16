@@ -46,7 +46,9 @@ export class RegistrationController {
     let jwt = sign({
       user: {  //make sure only get id and email, dont want password
         id: newUser.id,
-        email: newUser.email
+        email: newUser.email,
+        first_name: newUser.first_name,
+        last_name: newUser.last_name
       }
     }, "qwerty", {  //qwerty is the secret keyword for our own api
         issuer: "auth.ix.co.za",

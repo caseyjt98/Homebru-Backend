@@ -54,6 +54,8 @@ export class LoginController {
 
     let jwt = sign({
       user: {  //make sure only get id and email, dont want password
+        first_name: foundUser.first_name,
+        last_name: foundUser.last_name,
         id: foundUser.id,
         email: foundUser.email
       }

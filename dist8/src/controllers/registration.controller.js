@@ -45,7 +45,9 @@ let RegistrationController = class RegistrationController {
         let jwt = jsonwebtoken_1.sign({
             user: {
                 id: newUser.id,
-                email: newUser.email
+                email: newUser.email,
+                first_name: newUser.first_name,
+                last_name: newUser.last_name
             }
         }, "qwerty", {
             issuer: "auth.ix.co.za",

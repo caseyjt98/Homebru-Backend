@@ -50,6 +50,8 @@ let LoginController = class LoginController {
         }
         let jwt = jsonwebtoken_1.sign({
             user: {
+                first_name: foundUser.first_name,
+                last_name: foundUser.last_name,
                 id: foundUser.id,
                 email: foundUser.email
             }
