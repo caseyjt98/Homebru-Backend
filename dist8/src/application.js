@@ -22,14 +22,25 @@ class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryM
                 nested: true,
             },
         };
+        /*
+            var dataSourceConfig = new juggler.DataSource({
+              name: "db",
+              connector: "loopback-connector-mysql",
+              host: "localhost",
+              port: 3306,
+              user: "root",
+              password: "",
+              database: "subletting"
+            });
+            */
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
             connector: "loopback-connector-mysql",
-            host: "localhost",
+            host: process.env.DB_HOST,
             port: 3306,
-            user: "root",
-            password: "",
-            database: "subletting"
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME
         });
         this.dataSource(dataSourceConfig);
     }

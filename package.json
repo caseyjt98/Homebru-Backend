@@ -31,7 +31,9 @@
     "test:dev": "lb-mocha --allow-console-logs DIST/test/**/*.js && npm run posttest",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "live": "db-migrate up && node .",
+    "kc": "export NODE_ENV=kc && export DB_HOST=localhost && export DB_USER=root && export DB_PASSWORD='' && export DB_DATABASE=subletting && export DB_PORT=3306 && db-migrate up && npm start"
   },
   "repository": {
     "type": "git"
