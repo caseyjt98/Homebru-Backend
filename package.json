@@ -33,8 +33,8 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
     "live": "db-migrate up && node .",
-    "kc": "export NODE_ENV=kc && export DB_HOST=localhost && export DB_USER=root && export DB_PASSWORD='' && export DB_DATABASE=subletting && export DB_PORT=3306 && db-migrate up && npm start",
-    "qa": "export NODE_ENV=qa && export DB_HOST=localhost && export DB_USER=root && export DB_PASSWORD='' && export DB_DATABASE=ix_fs_2 && export DB_PORT=3306 && db-migrate up && npm start"
+    "kc": "export NODE_ENV=kc && export DB_HOST=ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com && export DB_USER=ix_fs_1 && export DB_PASSWORD=ixperience2018 && export DB_DATABASE=subletting && export DB_PORT=3306 && db-migrate up && npm start",
+    "qa": "export NODE_ENV=qa && export DB_HOST=ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com && export DB_USER=ix_fs_2 && export DB_PASSWORD=ixperience2018 && export DB_DATABASE=subletting && export DB_PORT=3306 && db-migrate up && npm start"
   },
   "repository": {
     "type": "git"
