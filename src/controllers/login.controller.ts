@@ -2,7 +2,7 @@ import { repository } from '@loopback/repository';
 import { UserRepository } from '../repositories';
 import { User } from '../models';
 import { sign, verify } from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
+
 import {
   HttpErrors,
   post,
