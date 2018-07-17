@@ -56,7 +56,9 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "is_subleaser", void 0);
 User = __decorate([
-    repository_1.model()
+    repository_1.model({
+        name: "user"
+    })
 ], User);
 exports.User = User;
 //# sourceMappingURL=user.model.js.map

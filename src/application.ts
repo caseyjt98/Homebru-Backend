@@ -39,8 +39,6 @@ export class SublettingApiApplication extends BootMixin(
       },
     };
 
-
-    // Do this when connecting to Heroku
     /**
     var dataSourceConfig = new juggler.DataSource({
       name: "db",

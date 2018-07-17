@@ -26,7 +26,6 @@ class SublettingApiApplication extends boot_1.BootMixin(repository_1.RepositoryM
                 nested: true,
             },
         };
-        // Do this when connecting to Heroku
         /**
         var dataSourceConfig = new juggler.DataSource({
           name: "db",
