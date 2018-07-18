@@ -15,6 +15,13 @@ let Product = class Product extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'number',
+        id: true
+    }),
+    __metadata("design:type", Number)
+], Product.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
         required: true,
         column: "address_number"
     }),
@@ -29,7 +36,8 @@ __decorate([
 ], Product.prototype, "street_name", void 0);
 __decorate([
     repository_1.property({
-        type: 'string'
+        type: 'string',
+        required: true
     }),
     __metadata("design:type", String)
 ], Product.prototype, "city", void 0);
@@ -49,20 +57,32 @@ __decorate([
 ], Product.prototype, "apt_number", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'string',
+        required: false
     }),
+<<<<<<< HEAD
     __metadata("design:type", Number)
 ], Product.prototype, "subleaser_id", void 0);
+=======
+    __metadata("design:type", String)
+], Product.prototype, "details", void 0);
+>>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'string',
+        required: false
     }),
+<<<<<<< HEAD
     __metadata("design:type", Number)
 ], Product.prototype, "product_id", void 0);
+=======
+    __metadata("design:type", String)
+], Product.prototype, "image", void 0);
+>>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 Product = __decorate([
-    repository_1.model()
+    repository_1.model({
+        name: "product"
+    })
 ], Product);
 exports.Product = Product;
 //# sourceMappingURL=product.model.js.map

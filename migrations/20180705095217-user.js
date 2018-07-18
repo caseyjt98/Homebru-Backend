@@ -30,7 +30,7 @@ exports.up = function (db, callback) {
     },
     last_name: {
       type: 'string',
-      lenght: 255,
+      length: 255,
       notNull: true
     },
     email: {
@@ -46,6 +46,10 @@ exports.up = function (db, callback) {
     is_subleaser: {
       type: 'boolean',
       notNull: true
+    },
+    image: {
+      type: 'string',
+      length: 500
     }
 
   }, callback);

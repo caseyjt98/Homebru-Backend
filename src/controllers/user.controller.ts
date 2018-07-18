@@ -5,6 +5,7 @@ import {
   HttpErrors,
   get,
   param,
+  patch,
 } from '@loopback/rest';
 
 
@@ -28,8 +29,13 @@ export class UserController {
     }
 
     return await this.userRepo.findById(id);
+  }
 
+  /** Need a PATCH method to edit a user!!
+  @patch('/users')
+  async editUser(): Promise<User> {
 
 
   }
+  */
 }

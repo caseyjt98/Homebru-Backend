@@ -17,15 +17,8 @@ export class ProductController {
   @post('/product')
   async createProduct(@requestBody() product: Product): Promise<Product> {
     // Check that required fields are supplied
-    if (!product.addressNumber || !product.streetName || !product.city || !product.zipCode) {
+    if (!product.address_number || !product.street_name || !product.city || !product.zip_code) {
       throw new HttpErrors.BadRequest('missing data');
-    }
-
-    // Check that product does not already exist
-    let productExists: boolean = !!(await this.productRepo.count({ productID: product.productID }));
-
-    if (productExists) {
-      throw new HttpErrors.BadRequest('product already exists');
     }
 
     return await this.productRepo.create(product);
@@ -33,6 +26,7 @@ export class ProductController {
 
   @get('/products')
   async findProducts(): Promise<Product[]> {
+
     return await this.productRepo.find();
   }
 

@@ -38,6 +38,12 @@ export class User extends Entity {
   })
   is_subleaser: boolean;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  image: string;
+
   getId() {
     return this.id;
   }
