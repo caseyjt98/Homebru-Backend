@@ -39,19 +39,6 @@ export class SublettingApiApplication extends BootMixin(
       },
     };
 
-    /*
-        var dataSourceConfig = new juggler.DataSource({
-          name: "db",
-          connector: "loopback-connector-mysql",
-          host: "localhost",
-          port: 3306,
-          user: "root",
-          password: "",
-          database: "subletting"
-        });
-        */
-
-    // Do this when connecting to Heroku
     /**
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
