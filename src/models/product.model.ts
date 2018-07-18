@@ -5,16 +5,22 @@ export class Product extends Entity {
 
   @property({
     type: 'number',
+    required: true
+  })
+  id: number;
+
+  @property({
+    type: 'number',
     required: true,
     column: "address_number"
   })
-  addressNumber: number;
+  address_number: number;
 
   @property({
     type: 'string',
     required: true
   })
-  streetName: string;
+  street_name: string;
 
   @property({
     type: 'string'
@@ -25,25 +31,19 @@ export class Product extends Entity {
     type: 'number',
     required: true
   })
-  zipCode: number;
+  zip_code: number;
 
   @property({
     type: 'number',
     required: false
   })
-  aptNumber: number;
+  apt_number: number;
 
   @property({
     type: 'number',
     required: true
   })
-  subleaserID: number;
-
-  @property({
-    type: 'number',
-    required: true
-  })
-  productID: number;
+  subleaser_id: number;
 
 
 

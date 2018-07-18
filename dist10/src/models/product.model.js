@@ -19,14 +19,14 @@ __decorate([
         column: "address_number"
     }),
     __metadata("design:type", Number)
-], Product.prototype, "address_number", void 0);
+], Product.prototype, "addressNumber", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: true
     }),
     __metadata("design:type", String)
-], Product.prototype, "street_name", void 0);
+], Product.prototype, "streetName", void 0);
 __decorate([
     repository_1.property({
         type: 'string'
@@ -39,28 +39,28 @@ __decorate([
         required: true
     }),
     __metadata("design:type", Number)
-], Product.prototype, "zip_code", void 0);
+], Product.prototype, "zipCode", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: false
     }),
     __metadata("design:type", Number)
-], Product.prototype, "apt_number", void 0);
+], Product.prototype, "aptNumber", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true
     }),
     __metadata("design:type", Number)
-], Product.prototype, "subleaser_id", void 0);
+], Product.prototype, "subleaserID", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: true
     }),
     __metadata("design:type", Number)
-], Product.prototype, "product_id", void 0);
+], Product.prototype, "productID", void 0);
 Product = __decorate([
     repository_1.model()
 ], Product);

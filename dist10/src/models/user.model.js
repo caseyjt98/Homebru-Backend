@@ -10,59 +10,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-let Product = class Product extends repository_1.Entity {
+let User = class User extends repository_1.Entity {
+    getId() {
+        return this.id;
+    }
 };
 __decorate([
     repository_1.property({
         type: 'number',
-        required: true,
-        column: "address_number"
+        id: true,
     }),
     __metadata("design:type", Number)
-], Product.prototype, "address_number", void 0);
+], User.prototype, "id", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
-        required: true
     }),
     __metadata("design:type", String)
-], Product.prototype, "street_name", void 0);
+], User.prototype, "first_name", void 0);
 __decorate([
     repository_1.property({
-        type: 'string'
+        type: 'string',
     }),
     __metadata("design:type", String)
-], Product.prototype, "city", void 0);
+], User.prototype, "last_name", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'string',
+        required: true,
     }),
-    __metadata("design:type", Number)
-], Product.prototype, "zip_code", void 0);
+    __metadata("design:type", String)
+], User.prototype, "email", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: false
+        type: 'string',
+        required: true,
     }),
-    __metadata("design:type", Number)
-], Product.prototype, "apt_number", void 0);
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'boolean',
+        required: true,
     }),
-    __metadata("design:type", Number)
-], Product.prototype, "subleaser_id", void 0);
-__decorate([
-    repository_1.property({
-        type: 'number',
-        required: true
-    }),
-    __metadata("design:type", Number)
-], Product.prototype, "product_id", void 0);
-Product = __decorate([
+    __metadata("design:type", Boolean)
+], User.prototype, "is_subleaser", void 0);
+User = __decorate([
     repository_1.model()
-], Product);
-exports.Product = Product;
-//# sourceMappingURL=product.model.js.map
+], User);
+exports.User = User;
+//# sourceMappingURL=user.model.js.map

@@ -4,13 +4,31 @@
   },
   "dev": {
     "driver": "mysql",
-    "host": "localhost",
+    "host": "ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com",
     "port": "3306",
-    "user": "root",
-    "password": "",
+    "user": "ix_fs_1",
+    "password": "ixperience2018",
     "database": "subletting"
   },
   "live": {
+    "driver": "mysql",
+    "host": {
+      "ENV": "DB_HOST"
+    },
+    "port": {
+      "ENV": "DB_PORT"
+    },
+    "user": {
+      "ENV": "DB_USER"
+    },
+    "password": {
+      "ENV": "DB_PASSWORD"
+    },
+    "database": {
+      "ENV": "DB_DATABASE"
+    }
+  },
+  "qa": {
     "driver": "mysql",
     "host": {
       "ENV": "DB_HOST"

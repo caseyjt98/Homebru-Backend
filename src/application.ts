@@ -19,7 +19,11 @@ export class SublettingApiApplication extends BootMixin(
   RepositoryMixin(RestApplication),
 ) {
   constructor(options?: ApplicationConfig) {
-    super(options);
+    super({
+      rest: {
+        port: process.env.PORT || 3000
+      }
+    });
 
     // Set up the custom sequence
     this.sequence(MySequence);
@@ -47,14 +51,23 @@ export class SublettingApiApplication extends BootMixin(
         });
         */
 
+    // Do this when connecting to Heroku
+    /**
+    var dataSourceConfig = new juggler.DataSource({
+      name: "db",
+      connector: "memory"
+    })
+    */
+
+    //use for mySQL database
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
       connector: "loopback-connector-mysql",
       host: process.env.DB_HOST,
-      port: 3306,
+      port: process.env.DB_PORT,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
+      database: process.env.DB_DATABASE
     });
 
 
