@@ -22,13 +22,8 @@ let ProductController = class ProductController {
     }
     async createProduct(product) {
         // Check that required fields are supplied
-        if (!product.addressNumber || !product.streetName || !product.city || !product.zipCode) {
+        if (!product.address_number || !product.street_name || !product.city || !product.zip_code) {
             throw new rest_1.HttpErrors.BadRequest('missing data');
-        }
-        // Check that product does not already exist
-        let productExists = !!(await this.productRepo.count({ productID: product.productID }));
-        if (productExists) {
-            throw new rest_1.HttpErrors.BadRequest('product already exists');
         }
         return await this.productRepo.create(product);
     }

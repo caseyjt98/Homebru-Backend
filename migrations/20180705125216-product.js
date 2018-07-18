@@ -45,9 +45,13 @@ exports.up = function (db, callback) {
     apt_number: {
       type: 'int'
     },
-    description: {
+    details: {
       type: 'string',
       length: 500
+    },
+    image: {
+      type: 'string',
+      lenght: 700
     }
 
   }, callback);

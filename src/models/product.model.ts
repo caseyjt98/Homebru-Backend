@@ -1,23 +1,33 @@
 import { Entity, property, model } from '@loopback/repository';
 
-@model()
+
+@model({
+  name: "product"
+})
 export class Product extends Entity {
+
+  @property({
+    type: 'number',
+    id: true
+  })
+  id?: number;
 
   @property({
     type: 'number',
     required: true,
     column: "address_number"
   })
-  addressNumber: number;
+  address_number: number;
 
   @property({
     type: 'string',
     required: true
   })
-  streetName: string;
+  street_name: string;
 
   @property({
-    type: 'string'
+    type: 'string',
+    required: true
   })
   city: string;
 
@@ -25,30 +35,33 @@ export class Product extends Entity {
     type: 'number',
     required: true
   })
-  zipCode: number;
+  zip_code: number;
 
   @property({
     type: 'number',
     required: false
   })
-  aptNumber: number;
+  apt_number: number;
 
   @property({
-    type: 'number',
-    required: true
+    type: 'string',
+    required: false
   })
-  subleaserID: number;
+  details: string;
 
   @property({
-    type: 'number',
-    required: true
+    type: 'string',
+    required: false
   })
-  productID: number;
-
-
-
+  image: string;
 
 }
+
+
+
+
+
+
 
 
 

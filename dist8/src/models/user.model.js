@@ -55,6 +55,13 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], User.prototype, "is_subleaser", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+        required: false,
+    }),
+    __metadata("design:type", String)
+], User.prototype, "image", void 0);
 User = __decorate([
     repository_1.model({
         name: "user"

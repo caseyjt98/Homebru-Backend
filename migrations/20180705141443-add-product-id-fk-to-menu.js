@@ -15,7 +15,7 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.addForeignKey('menu', 'product', 'product_id_fk',
+  db.addForeignKey('menu', 'product', 'product_id_fk2',
     {
       'id': 'id'
     },
@@ -27,7 +27,7 @@ exports.up = function (db, callback) {
 };
 
 exports.down = function (db, callback) {
-  db.removeForeignKey('menu', 'product_id_fk', callback);
+  db.removeForeignKey('menu', 'product_id_fk2', callback);
 };
 
 exports._meta = {
