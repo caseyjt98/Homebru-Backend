@@ -35,22 +35,20 @@ export class UserController {
 
   /// Need a PATCH method to edit a user!
   @patch('/users')
-  async editUser(@param.query.string("jwt") jwt: string, @requestBody() image: { image: string }) {
+  async editUser(@param.query.string("id") id: number, @requestBody() image: { image: string }) {
 
-    try {
-      let payload = verify(jwt, "qwerty") as any;
+    //try {
+    // let payload = verify(jwt, "qwerty") as any;
 
-      let id = payload.user.id;
-      console.log(id);
+    //let id = payload.user.id;
+    // console.log(id);
 
-      return await this.userRepo.updateById(id, { image: image.image });
-
-
-    } catch (err) {
-      throw new HttpErrors.Unauthorized("invalid token");
-    }
+    return await this.userRepo.updateById(id, { image: image.image });
 
 
+    //} catch (err) {
+    //  throw new HttpErrors.Unauthorized("invalid token");
+    // }
   }
 
 }
