@@ -90,13 +90,6 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], Product.prototype, "num_bathrooms", void 0);
-__decorate([
-    repository_1.property({
-        type: 'number',
-        required: true
-    }),
-    __metadata("design:type", Number)
-], Product.prototype, "price", void 0);
 Product = __decorate([
     repository_1.model({
         name: "product"

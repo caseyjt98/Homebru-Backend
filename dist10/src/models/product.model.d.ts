@@ -11,5 +11,4 @@ export declare class Product extends Entity {
     num_residents: number;
     num_bedrooms: number;
     num_bathrooms: number;
-    price: number;
 }

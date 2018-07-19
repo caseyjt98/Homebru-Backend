@@ -64,10 +64,6 @@ exports.up = function (db, callback) {
     num_bathrooms: {
       type: 'int',
       notNull: true
-    },
-    price: {
-      type: 'int',
-      notNull: true
     }
 
   }, callback);

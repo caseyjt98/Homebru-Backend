@@ -73,11 +73,6 @@ export class Product extends Entity {
   })
   num_bathrooms: number;
 
-  @property({
-    type: 'number',
-    required: true
-  })
-  price: number;
 
 
 }
