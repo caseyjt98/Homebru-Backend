@@ -8,4 +8,8 @@ export declare class Product extends Entity {
     apt_number: number;
     details: string;
     image: string;
+    num_residents: number;
+    num_bedrooms: number;
+    num_bathrooms: number;
+    price: number;
 }

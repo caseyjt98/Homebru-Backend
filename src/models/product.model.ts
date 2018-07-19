@@ -55,6 +55,31 @@ export class Product extends Entity {
   })
   image: string;
 
+  @property({
+    type: 'number',
+    required: true
+  })
+  num_residents: number;
+
+  @property({
+    type: 'number',
+    required: true
+  })
+  num_bedrooms: number;
+
+  @property({
+    type: 'number',
+    required: true
+  })
+  num_bathrooms: number;
+
+  @property({
+    type: 'number',
+    required: true
+  })
+  price: number;
+
+
 }
 
 

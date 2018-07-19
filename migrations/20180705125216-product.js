@@ -51,7 +51,23 @@ exports.up = function (db, callback) {
     },
     image: {
       type: 'string',
-      lenght: 700
+      length: 700
+    },
+    num_residents: {
+      type: 'int',
+      notNull: true
+    },
+    num_bedrooms: {
+      type: 'int',
+      notNull: true
+    },
+    num_bathrooms: {
+      type: 'int',
+      notNull: true
+    },
+    price: {
+      type: 'int',
+      notNull: true
     }
 
   }, callback);
