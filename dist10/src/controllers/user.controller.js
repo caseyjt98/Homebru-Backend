@@ -57,7 +57,7 @@ __decorate([
 ], UserController.prototype, "findUsersById", null);
 __decorate([
     rest_1.patch('/users'),
-    __param(0, rest_1.param.query.string("id")), __param(1, rest_1.requestBody()),
+    __param(0, rest_1.param.query.number("id")), __param(1, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)

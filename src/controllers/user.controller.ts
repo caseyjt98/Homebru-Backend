@@ -35,7 +35,7 @@ export class UserController {
 
   /// Need a PATCH method to edit a user!
   @patch('/users')
-  async editUser(@param.query.string("id") id: number, @requestBody() image: { image: string }) {
+  async editUser(@param.query.number("id") id: number, @requestBody() image: { image: string }) {
 
     //try {
     // let payload = verify(jwt, "qwerty") as any;
