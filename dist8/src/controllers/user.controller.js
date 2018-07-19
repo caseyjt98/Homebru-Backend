@@ -35,7 +35,8 @@ let UserController = class UserController {
     async editUser(jwt, image) {
         try {
             let payload = jsonwebtoken_1.verify(jwt, "qwerty");
-            let id = payload.id;
+            let id = payload.user.id;
+            console.log(id);
             return await this.userRepo.updateById(id, { image: image.image });
         }
         catch (err) {

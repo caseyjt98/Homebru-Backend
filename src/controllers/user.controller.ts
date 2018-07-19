@@ -40,7 +40,8 @@ export class UserController {
     try {
       let payload = verify(jwt, "qwerty") as any;
 
-      let id = payload.id;
+      let id = payload.user.id;
+      console.log(id);
 
       return await this.userRepo.updateById(id, { image: image.image });
 
