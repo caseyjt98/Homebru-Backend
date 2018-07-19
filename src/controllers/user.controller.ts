@@ -1,11 +1,13 @@
 import { repository } from '@loopback/repository';
 import { UserRepository } from '../repositories';
 import { User } from '../models';
+import { verify } from 'jsonwebtoken';
 import {
   HttpErrors,
   get,
   param,
   patch,
+  requestBody
 } from '@loopback/rest';
 
 
@@ -31,11 +33,23 @@ export class UserController {
     return await this.userRepo.findById(id);
   }
 
-  /** Need a PATCH method to edit a user!!
+  /// Need a PATCH method to edit a user!
   @patch('/users')
-  async editUser(): Promise<User> {
+  async editUser(@param.query.string("jwt") jwt: string, @requestBody() image: { image: string }) {
+
+    try {
+      let payload = verify(jwt, "qwerty") as any;
+
+      let id = payload.id;
+
+      return await this.userRepo.updateById(id, { image: image.image });
+
+
+    } catch (err) {
+      throw new HttpErrors.Unauthorized("invalid token");
+    }
 
 
   }
-  */
+
 }

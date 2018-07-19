@@ -5,4 +5,7 @@ export declare class UserController {
     constructor(userRepo: UserRepository);
     findUsers(): Promise<User[]>;
     findUsersById(id: number): Promise<User>;
+    editUser(jwt: string, image: {
+        image: string;
+    }): Promise<boolean>;
 }
