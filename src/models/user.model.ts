@@ -1,4 +1,5 @@
 import { Entity, property, model } from '@loopback/repository';
+import { Product } from './product.model';
 
 @model({
   name: "user"
@@ -43,6 +44,8 @@ export class User extends Entity {
     required: false,
   })
   image: string;
+
+
 
   getId() {
     return this.id;

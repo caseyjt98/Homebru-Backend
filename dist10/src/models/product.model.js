@@ -15,21 +15,29 @@ let Product = class Product extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: 'number',
+        id: true
+    }),
+    __metadata("design:type", Number)
+], Product.prototype, "id", void 0);
+__decorate([
+    repository_1.property({
+        type: 'number',
         required: true,
         column: "address_number"
     }),
     __metadata("design:type", Number)
-], Product.prototype, "addressNumber", void 0);
+], Product.prototype, "address_number", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
         required: true
     }),
     __metadata("design:type", String)
-], Product.prototype, "streetName", void 0);
+], Product.prototype, "street_name", void 0);
 __decorate([
     repository_1.property({
-        type: 'string'
+        type: 'string',
+        required: true
     }),
     __metadata("design:type", String)
 ], Product.prototype, "city", void 0);
@@ -39,30 +47,32 @@ __decorate([
         required: true
     }),
     __metadata("design:type", Number)
-], Product.prototype, "zipCode", void 0);
+], Product.prototype, "zip_code", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
         required: false
     }),
     __metadata("design:type", Number)
-], Product.prototype, "aptNumber", void 0);
+], Product.prototype, "apt_number", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'string',
+        required: false
     }),
-    __metadata("design:type", Number)
-], Product.prototype, "subleaserID", void 0);
+    __metadata("design:type", String)
+], Product.prototype, "details", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
-        required: true
+        type: 'string',
+        required: false
     }),
-    __metadata("design:type", Number)
-], Product.prototype, "productID", void 0);
+    __metadata("design:type", String)
+], Product.prototype, "image", void 0);
 Product = __decorate([
-    repository_1.model()
+    repository_1.model({
+        name: "product"
+    })
 ], Product);
 exports.Product = Product;
 //# sourceMappingURL=product.model.js.map
