@@ -8,15 +8,9 @@ export class Product extends Entity {
 
   @property({
     type: 'number',
-<<<<<<< HEAD
-    required: true
-  })
-  id: number;
-=======
     id: true
   })
   id?: number;
->>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 
   @property({
     type: 'number',
@@ -48,29 +42,22 @@ export class Product extends Entity {
     required: false
   })
   apt_number: number;
-<<<<<<< HEAD
-=======
 
   @property({
     type: 'string',
     required: false
   })
   details: string;
->>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 
   @property({
     type: 'string',
     required: false
   })
-<<<<<<< HEAD
-  subleaser_id: number;
-=======
   image: string;
 
 }
 
 
->>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 
 
 

@@ -60,25 +60,15 @@ __decorate([
         type: 'string',
         required: false
     }),
-<<<<<<< HEAD
-    __metadata("design:type", Number)
-], Product.prototype, "subleaser_id", void 0);
-=======
     __metadata("design:type", String)
 ], Product.prototype, "details", void 0);
->>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 __decorate([
     repository_1.property({
         type: 'string',
         required: false
     }),
-<<<<<<< HEAD
-    __metadata("design:type", Number)
-], Product.prototype, "product_id", void 0);
-=======
     __metadata("design:type", String)
 ], Product.prototype, "image", void 0);
->>>>>>> dcac69cf593d236170680e95fc11881ef072bfa0
 Product = __decorate([
     repository_1.model({
         name: "product"
